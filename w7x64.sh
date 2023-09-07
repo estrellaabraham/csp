@@ -19,7 +19,7 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-nohup ./ngrok tcp --region $CRP 3388 &>/dev/null &
+nohup ./ngrok tcp --region $CRP 5900 &>/dev/null &
 echo RDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
