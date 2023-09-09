@@ -2,12 +2,12 @@ apt-get update
 echo "Install QEMU"
 apt install qemu-kvm -y
 echo "Download windows files"
-wget -O win2008.iso https://www.dropbox.com/scl/fi/soc7cqxpsglbr8w53l992/W-server-2008-stan-data-enter-64-21AK22.iso?rlkey=yyzu49sg7mwics71f5ra2jks9&dl=1
+wget -O win2012.iso https://www.dropbox.com/scl/fi/6llcbw84x5zn62cfk5kfy/Win-7-AIO-01-2023-Final-v2-64-21AK22-COM.iso?rlkey=vuk2wq5945xs4yy5r2gn0kc4r&dl=1
 echo "Download bios64"
 wget -O bios64.bin https://github.com/BlankOn/ovmf-blobs/raw/master/bios64.bin
 echo "Create win2012.img"
-qemu-img create -f raw win2008.img
-qemu-img create -f raw win2008.img 20G
+qemu-img create -f raw win2012.img
+qemu-img create -f raw win2012.img 20G
 echo "Download ngrok"
 wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
 tar -xf ngrok.tgz > /dev/null 2>&1
