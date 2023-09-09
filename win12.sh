@@ -2,7 +2,7 @@ apt-get update
 echo "Install QEMU"
 apt install qemu-kvm -y
 echo "Download windows files"
-wget -O win2012.img https://www.dropbox.com/scl/fi/cmjq4yvfgfi9htpzrhjft/win2012.img?rlkey=7ltwk2g532s8k2fi2behb2rv4&dl=1
+wget -O win2012.img https://www.dropbox.com/scl/fi/tkbuctukbjaysyajy4gk2/win2012.img?rlkey=994q5zqx3kmk4mn3855x4jl3j&dl=1
 echo "Download ngrok"
 wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
 tar -xf ngrok.tgz > /dev/null 2>&1
