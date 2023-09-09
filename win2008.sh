@@ -2,7 +2,7 @@ apt-get update
 echo "Install QEMU"
 apt install qemu-kvm -y
 echo "Download windows files"
-wget -O win2012.iso https://www.dropbox.com/scl/fi/6llcbw84x5zn62cfk5kfy/Win-7-AIO-01-2023-Final-v2-64-21AK22-COM.iso?rlkey=vuk2wq5945xs4yy5r2gn0kc4r&dl=1
+wget -O win2012.iso https://go.microsoft.com/fwlink/p/?LinkID=2195443&clcid=0x409&culture=en-us&country=US
 echo "Download bios64"
 wget -O bios64.bin https://github.com/BlankOn/ovmf-blobs/raw/master/bios64.bin
 echo "Create win2012.img"
