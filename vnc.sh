@@ -11,7 +11,7 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-./ngrok tcp --region $CRP 5900 &>/dev/null &
+screen ./ngrok tcp --region $CRP 5901 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 clear
@@ -19,5 +19,5 @@ echo RDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
 echo "Starting Windows"
-qemu-system-x86_64 -hda win2012.img -m 4G -vnc :0 -smp cores=2  -net user -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga qxl -accel kvm &>/dev/null &
+sudo qemu-system-x86_64 -m 4G -cpu host -boot order=c -drive file=win2012.iso,media=cdrom -drive file=win2012.img,format=raw -device usb-ehci,id=usb,bus=pci.0,addr=0x4 -device usb-tablet -vnc :0 -smp cores=2 -device rtl8139,netdev=n0 -netdev user,id=n0 -vga qxl -accel kvm -bios bios64.bin
 sleep 43200
