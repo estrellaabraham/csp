@@ -1,17 +1,18 @@
 apt-get update
+read -p "Link win: " CRM
 echo "Download windows files"
-wget -O w7x64.img https://bit.ly/akuhnetw7X64
+wget -O win2012.img $CRM
 echo "Download ngrok"
-wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
-unzip ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
+tar -xf ngrok.tgz > /dev/null 2>&1
 read -p "Ctrl + V Authtoken: " CRP 
 ./ngrok authtoken $CRP 
 nohup ./ngrok tcp 3388 &>/dev/null &
 echo Downloading File From akuh.net
-apt install qemu-kvm -y
+apt-get install qemu-system-x86 -y
 echo "Wait"
 echo "Starting Windows"
-qemu-system-x86_64 -hda w7x64.img -m 4G -smp cores=2 -net user,hostfwd=tcp::3388-:3389 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga qxl -accel kvm &>/dev/null &
+qemu-system-x86_64 -hda w7x64.img -m 4G -smp cores=2 -net user,hostfwd=tcp::3388-:3389 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic &>/dev/null &
 clear
 echo RDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
