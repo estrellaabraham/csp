@@ -10,8 +10,8 @@ echo "===================================="
 echo "Download ngrok"
 wget -O ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz > /dev/null 2>&1
 tar -xf ngrok.tgz > /dev/null 2>&1
-read -p "Ctrl + V Authtoken: " CRP 
-./ngrok authtoken $CRP 
+read -p "Ctrl + V Authtoken: " CR
+./ngrok authtoken $CR
 clear
 echo "choose ngrok region (for better connection)."
 echo "======================="
