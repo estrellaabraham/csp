@@ -85,7 +85,7 @@ fi
 }
 
 ####################################################
-sudo apt get update
+sudo apt update
 sudo apt install xfce4
 sudo apt install stacer
 sudo apt install mmv
