@@ -85,16 +85,16 @@ fi
 }
 
 ####################################################
-run-cmd "sudo apt-get update" 
-run-cmd "sudo apt-get upgrade -y" 
-run-cmd "sudo apt-get install ubuntu-desktop -y"
-run-cmd "sudo apt-get install stacer -y"
-run-cmd "sudo apt-get install mmv -y"
-run-cmd "sudo apt-get install firefox -y"
-run-cmd "sudo apt-get install qdirstat -y"
+sudo apt get update
+sudo apt get upgrade
+sudo apt get install ubuntu-desktop
+sudo apt-get install stacer
+sudo apt-get install mmv
+sudo apt-get install firefox
+sudo apt-get install qdirstat
 sub-install-nomachine
 sub-configue-nomachine-user
-run-cmd "sudo reboot"
+sudo reboot
 clear
 echo "NoMachine: https://www.nomachine.com/download"
 echo Done! NoMachine Information:
