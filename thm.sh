@@ -86,12 +86,11 @@ fi
 
 ####################################################
 sudo apt get update
-sudo apt get upgrade
-sudo apt get install xfce4
-sudo apt-get install stacer
-sudo apt-get install mmv
-sudo apt-get install firefox
-sudo apt-get install qdirstat
+sudo apt install xfce4
+sudo apt install stacer
+sudo apt install mmv
+sudo apt install firefox
+sudo apt install qdirstat
 sub-install-nomachine
 sub-configue-nomachine-user
 sudo reboot
