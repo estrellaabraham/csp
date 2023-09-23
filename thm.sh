@@ -95,11 +95,6 @@ run-cmd "sudo apt-get install qdirstat -y"
 sub-install-nomachine
 sub-configue-nomachine-user
 run-cmd "sudo reboot"
-echo "install brave"
-sudo apt install curl
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt install brave-browser
 clear
 echo "NoMachine: https://www.nomachine.com/download"
 echo Done! NoMachine Information:
