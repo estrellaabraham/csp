@@ -78,21 +78,14 @@ sub-configue-nomachine-user ()
     else 
     echo "Running..."
     sudo adduser nomachine
-         #(example password : paste  se7ye8pc5hs0  )
-    sudo usermod -aG sudo,adm,lp,sys,lpadmin nomachine
-    sudo passwd --delete --lock rootuser
 fi
 }
 
 ####################################################
 
-sudo apt install firefox -y
-sudo apt install chromium-browser -y
 sudo apt update
-sudo apt upgrade
+sudo apt install chromium-browser
 sudo apt install xfce4
-sudo apt install stacer
-sudo apt install mmv
 sudo apt install qdirstat
 sub-install-nomachine
 sub-configue-nomachine-user
