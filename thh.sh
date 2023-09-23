@@ -61,34 +61,9 @@ fi
 
 ####################################################
 
-sub-configue-nomachine-user ()
-{
- echo ""
- echo ""
- echo "================================================================="
- echo " Set up nomachine user & lock root user"
- echo "-----------------------------------------------------------------"
- read -p "Proceed ? (Y/n)" choice
- if [ "$choice" = "n" ]
-    then 
-        echo "Bypassing...." 
-    elif [ "$choice" = "N" ]
-	then
-       echo "Bypassing...." 
-    else 
-    echo "Running..."
-    sudo adduser nomachine
-fi
-}
-
-####################################################
-
 sudo apt update
-sudo apt install chromium-browser
 sudo apt install xfce4
-sudo apt install qdirstat
 sub-install-nomachine
-sub-configue-nomachine-user
 sudo reboot
 clear
 echo "NoMachine: https://www.nomachine.com/download"
