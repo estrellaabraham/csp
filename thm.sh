@@ -86,7 +86,7 @@ fi
 
 ####################################################
 sudo apt update
-sudo apt install xfce4
+sudo apt install lxde
 sub-install-nomachine
 
 sub-configue-nomachine-user
