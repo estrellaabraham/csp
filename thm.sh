@@ -87,7 +87,7 @@ fi
 ####################################################
 sudo apt get update
 sudo apt get upgrade
-sudo apt get install ubuntu-desktop
+sudo apt get install xfce4
 sudo apt-get install stacer
 sudo apt-get install mmv
 sudo apt-get install firefox
