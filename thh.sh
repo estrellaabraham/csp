@@ -61,9 +61,35 @@ fi
 
 ####################################################
 
+sub-configue-nomachine-user ()
+{
+ echo ""
+ echo ""
+ echo "================================================================="
+ echo " Set up nomachine user & lock root user"
+ echo "-----------------------------------------------------------------"
+ read -p "Proceed ? (Y/n)" choice
+ if [ "$choice" = "n" ]
+    then 
+        echo "Bypassing...." 
+    elif [ "$choice" = "N" ]
+	then
+       echo "Bypassing...." 
+    else 
+    echo "Running..."
+    sudo adduser nomachine
+         #(example password : paste  se7ye8pc5hs0  )
+    sudo usermod -aG sudo,adm,lp,sys,lpadmin nomachine
+    sudo passwd --delete --lock rootuser
+fi
+}
+
+####################################################
+
 sudo apt update
 sudo apt install xfce4
 sub-install-nomachine
+sub-configue-nomachine-user
 sudo reboot
 clear
 echo "NoMachine: https://www.nomachine.com/download"
