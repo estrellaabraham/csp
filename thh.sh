@@ -1,3 +1,4 @@
+sudo reboot
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
 ./ng.sh
@@ -36,61 +37,6 @@ read -p "choose ngrok region: " CRP
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 
-####################################################
-
-sub-install-nomachine ()
-{
- echo ""
- echo ""
- echo "================================================================="
- echo " Install NoMachine v8.4.1 amd64  "
- echo "-----------------------------------------------------------------"
- read -p "Proceed ? (Y/n)" choice
- if [ "$choice" = "n" ]
-    then 
-        echo "Bypassing...." 
-    elif [ "$choice" = "N" ]
-	then
-       echo "Bypassing...." 
-    else 
-       echo "Running..."
-       sudo wget https://download.nomachine.com/download/8.4/Linux/nomachine_8.4.2_1_amd64.deb
-       sudo apt install -f ./nomachine_8.4.2_1_amd64.deb
-fi
-}
-
-####################################################
-
-sub-configue-nomachine-user ()
-{
- echo ""
- echo ""
- echo "================================================================="
- echo " Set up nomachine user & lock root user"
- echo "-----------------------------------------------------------------"
- read -p "Proceed ? (Y/n)" choice
- if [ "$choice" = "n" ]
-    then 
-        echo "Bypassing...." 
-    elif [ "$choice" = "N" ]
-	then
-       echo "Bypassing...." 
-    else 
-    echo "Running..."
-    sudo adduser nomachine
-         #(example password : paste  se7ye8pc5hs0  )
-    sudo usermod -aG sudo,adm,lp,sys,lpadmin nomachine
-    sudo passwd --delete --lock rootuser
-fi
-}
-
-####################################################
-
-sudo apt update
-sudo apt install xfce4
-sub-install-nomachine
-sub-configue-nomachine-user
-sudo reboot
 clear
 echo "NoMachine: https://www.nomachine.com/download"
 echo Done! NoMachine Information:
