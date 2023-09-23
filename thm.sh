@@ -69,7 +69,7 @@ sub-configue-nomachine-user ()
  if [ "$choice" = "n" ]
     then 
         echo "Bypassing...." 
-    elif [ "$choice" = "y" ]
+    elif [ "$choice" = "N" ]
 	then
        echo "Bypassing...." 
     else 
@@ -80,6 +80,13 @@ sub-configue-nomachine-user ()
     sudo passwd --delete --lock rootuser
 fi
 }
+run-cmd "sudo apt-get update" 
+run-cmd "sudo apt-get upgrade -y" 
+run-cmd "sudo apt-get install lxde"
+run-cmd "sudo apt-get install firefox -y"
+sub-install-nomachine
+sub-configue-nomachine-user
+run-cmd "sudo reboot"
 sudo apt install curl
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
