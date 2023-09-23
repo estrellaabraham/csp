@@ -86,45 +86,16 @@ fi
 
 ####################################################
 
-sub-brave ()
-{
- echo ""
- echo ""
- echo "================================================================="
- echo " Install brave"
- echo "-----------------------------------------------------------------"
- read -p "Proceed ? (Y/n)" choice
- if [ "$choice" = "n" ]
-    then 
-        echo "Bypassing...." 
-    elif [ "$choice" = "N" ]
-	then
-       echo "Bypassing...." 
-    else 
-    echo "Running..."
-    sudo apt install curl
-    
-    sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-
-    echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-
-    sudo apt update
-
-    sudo apt install brave-browser
-fi
-}
-
-####################################################
-
+sudo apt install firefox -y
+sudo apt install chromium-browser -y
 sudo apt update
+sudo apt upgrade
 sudo apt install xfce4
 sudo apt install stacer
 sudo apt install mmv
-sudo apt install firefox
 sudo apt install qdirstat
 sub-install-nomachine
 sub-configue-nomachine-user
-sub-brave
 sudo reboot
 clear
 echo "NoMachine: https://www.nomachine.com/download"
