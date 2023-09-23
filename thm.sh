@@ -35,8 +35,6 @@ read -p "choose ngrok region: " CRP
 ./ngrok tcp --region $CRP 4000 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
-sudo apt update
-sudo apt install lxde
 
 ####################################################
 
@@ -87,9 +85,13 @@ fi
 }
 
 ####################################################
+sudo apt update
+sudo apt install xfce4
 sub-install-nomachine
 
 sub-configue-nomachine-user
+
+run-cmd "sudo reboot"
 echo "install brave"
 sudo apt install curl
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
