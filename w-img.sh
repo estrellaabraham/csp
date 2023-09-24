@@ -1,6 +1,6 @@
 apt-get update
 echo "Install QEMU"
-apt install qemu-kvm -y
+apt install qemu-system-x86 -y
 read -p "Link win: " CRM
 echo "Download windows files"
 wget -O win2012.qcow2 $CRM
@@ -24,7 +24,7 @@ read -p "choose ngrok region: " CRP
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo "Starting Windows"
-qemu-system-x86_64 -hda win2012.qcow2 -m 4G -smp cores=4 -vnc :0 -smp cores=2 -net user -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic &>/dev/null &
+sudo qemu-system-x86_64 -vnc :0 -hda win2012.qcow2 -m 8G -smp cores=2 -net user -net nic -machine usb=on -device usb-tablet > /dev/null 2>&1
 clear
 echo RDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
