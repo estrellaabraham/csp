@@ -62,7 +62,6 @@ fi
 
 sudo apt update	&>/dev/null &
 sudo apt install lxde &>/dev/null &
-sudo apt install qdirstat
 sub-configue-nomachine-user
 sudo reboot
 clear
