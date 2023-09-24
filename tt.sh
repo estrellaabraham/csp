@@ -60,9 +60,9 @@ fi
 
 ####################################################
 
-sudo apt update	&>/dev/null &
-sudo apt install lxde &>/dev/null &
-sub-configue-nomachine-user
+sudo apt update	
+sudo apt install lxde 
+sub-install-nomachine
 sudo reboot
 clear
 
