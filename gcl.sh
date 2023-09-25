@@ -1,5 +1,7 @@
 sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" user
+sudo usermod -aG sudo user
 echo "user:root" | sudo chpasswd
+
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
 ./ng.sh
