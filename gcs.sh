@@ -1,4 +1,4 @@
-sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" user
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/user --gecos "User" user
 sudo usermod -aG sudo user
 echo "user:root" | sudo chpasswd
 
@@ -47,7 +47,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:16.04
+docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:20.04
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
