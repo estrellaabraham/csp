@@ -43,6 +43,7 @@ echo "Install RDP"
 echo "===================================="
 sudo apt update && apt upgrade -y
 sudo apt install -y xrdp
+sudo apt install debconf-utils
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 sudo apt install xfce4 -y
 sudo apt-get install -y xfce4-terminal
