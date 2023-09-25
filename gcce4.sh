@@ -1,4 +1,4 @@
-sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" user
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/user --gecos "User" user
 sudo usermod -aG sudo user
 echo "user:root" | sudo chpasswd
 
