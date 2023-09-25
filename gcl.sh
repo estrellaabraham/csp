@@ -43,7 +43,8 @@ echo "Install RDP"
 echo "===================================="
 sudo apt update && apt upgrade -y
 sudo apt install -y xrdp
-DEBIAN_FRONTEND=noninteractive sudo apt install xfce4 -y
+echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
+sudo apt install xfce4 -y
 sudo apt-get install -y xfce4-terminal
 sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
 sudo service xrdp start
