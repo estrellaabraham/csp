@@ -37,13 +37,13 @@ sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo "Install RDP"
 echo "===================================="
-docker pull danielguerra/ubuntu-xrdp
+docker pull danielguerra/alpine-xfce4-xrdp
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:16.04
+docker run -d --name rdp --shm-size 1g -p 3389:3389 danielguerra/alpine-xfce4-xrdp
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
