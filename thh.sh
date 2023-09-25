@@ -32,13 +32,13 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-./ngrok tcp --region $CRP 3389 &>/dev/null &
+./ngrok tcp --region $CRP 33890 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull danielguerra/ubuntu-xrdp
+docker pull frxyt/xrdp
 clear
 echo "===================================="
 echo "Start RDP"
@@ -55,10 +55,10 @@ echo "Keep support akuh.net thank you"
 echo "Wait 1 minute to finish bot"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:20.04 > /dev/null 2>&1
+docker run --rm -p 33890:3389 frxyt/xrdp:xfce > /dev/null 2>&1
 echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
 echo "Don't close tab colab to keep rdp running 12 hours"
 echo "===================================="
-sleep 43200
+seq 1 43200 | while read i; do echo -en "\r Running .     $i s /43200 s";sleep 0.1;echo -en "\r Running ..    $i s /43200 s";sleep 0.1;echo -en "\r Running ...   $i s /43200 s";sleep 0.1;echo -en "\r Running ....  $i s /43200 s";sleep 0.1;echo -en "\r Running ..... $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1;echo -en "\r Running  .... $i s /43200 s";sleep 0.1;echo -en "\r Running   ... $i s /43200 s";sleep 0.1;echo -en "\r Running    .. $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1; done
