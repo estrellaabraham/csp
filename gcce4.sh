@@ -41,9 +41,9 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-sudo apt-get update && apt upgrade -y
-sudo apt-get install -y xrdp
-sudo apt-get install xfce4 -y
+sudo apt update && apt upgrade -y
+sudo apt install -y xrdp
+sudo apt install xfce4 -y
 sudo apt-get install -y xfce4-terminal
 sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
 sudo service xrdp start
