@@ -1,7 +1,3 @@
-sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/user --gecos "User" user
-sudo usermod -aG sudo user
-echo "user:root" | sudo chpasswd
-
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
 ./ng.sh
@@ -36,27 +32,16 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-./ngrok tcp --region $CRP 3389 &>/dev/null &
+./ngrok tcp --region $CRP 4000 &>/dev/null &
 sleep 1
-
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
-echo "Wait Downloading file 3-4 minutes"
-echo "EM"
-echo "================================"
-echo "Installing the Desktop enviroment and additional software"
-sudo apt-get update -y
-sudo apt install -y xrdp
-sudo DEBIAN_FRONTEND=noninteractive \ apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
-sudo apt-get install -y xfce4-terminal
-sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
-sudo service xrdp start
+docker run --rm -d --network host --privileged --name nomachine-xfce4 -e PASSWORD=123456 -e USER=user --cap-add=SYS_PTRACE --shm-size=1g thuonghai2711/nomachine-ubuntu-desktop:xfce4
 clear
-echo "================================"
-echo "Desktop Installation complete"
-echo "================================"
-echo XRDP Address:
-curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
-echo "===================================="
-echo "Don't close tab colab to keep rdp running 12 hours"
+echo "NoMachine: https://www.nomachine.com/download"
+echo Done! NoMachine Information:
+echo IP Address:
+curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
+echo User: user
+echo Passwd: 123456
 echo "VM can't connect? Restart Cloud Shell then Re-run script."
 seq 1 43200 | while read i; do echo -en "\r Running .     $i s /43200 s";sleep 0.1;echo -en "\r Running ..    $i s /43200 s";sleep 0.1;echo -en "\r Running ...   $i s /43200 s";sleep 0.1;echo -en "\r Running ....  $i s /43200 s";sleep 0.1;echo -en "\r Running ..... $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1;echo -en "\r Running  .... $i s /43200 s";sleep 0.1;echo -en "\r Running   ... $i s /43200 s";sleep 0.1;echo -en "\r Running    .. $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1; done
