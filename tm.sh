@@ -40,12 +40,12 @@ echo "Wait Downloading file 3-4 minutes"
 echo "EM"
 echo "================================"
 echo "Installing the Desktop enviroment and additional software"
-sudo apt update && apt upgrade -y
-sudo apt install firefox -y
+sudo apt-get update -y
 sudo apt install -y xrdp
-sudo apt install lxde -y
-sudo apt-get install -y lxde-terminal
-sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh
+sudo DEBIAN_FRONTEND=noninteractive \ apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
+sudo systemctl disable lightdm.service
+sudo apt-get install -y xfce4-terminal
+sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
 sudo service xrdp start
 clear
 echo "================================"
@@ -55,5 +55,5 @@ echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
 echo "Don't close tab colab to keep rdp running 12 hours"
-echo "===================================="
-sleep 43200
+echo "VM can't connect? Restart Cloud Shell then Re-run script."
+seq 1 43200 | while read i; do echo -en "\r Running .     $i s /43200 s";sleep 0.1;echo -en "\r Running ..    $i s /43200 s";sleep 0.1;echo -en "\r Running ...   $i s /43200 s";sleep 0.1;echo -en "\r Running ....  $i s /43200 s";sleep 0.1;echo -en "\r Running ..... $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1;echo -en "\r Running  .... $i s /43200 s";sleep 0.1;echo -en "\r Running   ... $i s /43200 s";sleep 0.1;echo -en "\r Running    .. $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1; done
