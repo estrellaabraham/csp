@@ -14,17 +14,17 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-nohup ./ngrok tcp --region $CRP 5900 &>/dev/null &
+nohup ./ngrok tcp --region $CRP 3389 &>/dev/null &
 echo Please wait for installing...
 sudo apt update -y > /dev/null 2>&1
 echo "Installing QEMU (2-3m)..."
 sudo apt install qemu-kvm -y > /dev/null 2>&1
 echo "Download windows files"
-curl -L -o win2012.img https://www.dropbox.com/scl/fi/aiojlzp2gxh5f0a6qjauf/windows-server-2012r2.img?rlkey=zxulkiq9inlb3xbffp152o5fd&dl=1
+docker pull thuonghai2711/qemu-kvm-2012r2
 echo "Windows 2012 On Google Colab"
+docker run --name w2012r2 --privileged -d -p 3389:3389 thuonghai2711/qemu-kvm-2012r2:latest > /dev/null 2>&1
 echo Your VNC IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "Note: Use Right-Click Or Ctrl+C To Copy"
 echo "Please Keep Colab Tab Open, Maximum Time 12h"
-qemu-system-x86_64 -hda win2012.img -m 4G -smp cores=4 -vnc :0 -smp cores=2 -net user -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic &>/dev/null &
 sleep 43200
