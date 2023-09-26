@@ -41,7 +41,10 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-sudo apt-get install lxde -y
+echo "===================================="
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt install --assume-yes lxde dbus-x11 xscreensaver
+echo "===================================="
 sudo apt-get update > /dev/null 2>&1
 sudo apt install -y xrdp > /dev/null 2>&1
 sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh > /dev/null 2>&1
