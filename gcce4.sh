@@ -43,7 +43,10 @@ echo "Install RDP"
 echo "===================================="
 sudo apt update && apt upgrade -y
 sudo apt install -y xrdp
-sudo apt install xfce4 -y
+echo "===================================="
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
+echo "===================================="
 sudo apt-get install -y xfce4-terminal
 sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
 sudo service xrdp start
