@@ -1,3 +1,7 @@
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/user --gecos "User" user
+sudo usermod -aG sudo user
+echo "user:aa" | sudo chpasswd
+
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
 ./ng.sh
@@ -38,7 +42,7 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull danchitnis/xrdp
+docker pull satishweb/xrdp
 clear
 echo "===================================="
 echo "Start RDP"
@@ -55,7 +59,7 @@ echo "Keep support akuh.net thank you"
 echo "Wait 1 minute to finish bot"
 echo "===================================="
 echo "===================================="
-docker run -it -p 33890:3389 danchitnis/xrdp:ubuntu-xfce user root yes > /dev/null 2>&1
+docker run -d -e GUEST_PASS='guest' -p 3389:3389 -v $(pwd)/home/guest:/home/guest --name xrdp satishweb/xrdp:latest > /dev/null 2>&1
 echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
