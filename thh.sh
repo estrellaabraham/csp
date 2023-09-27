@@ -42,7 +42,7 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull frxyt/xrdp:latest
+docker pull frxyt/xrdp
 clear
 echo "===================================="
 echo "Start RDP"
@@ -59,7 +59,7 @@ echo "Keep support akuh.net thank you"
 echo "Wait 1 minute to finish bot"
 echo "===================================="
 echo "===================================="
-docker run --rm -p 33890:3389 frxyt/xrdp:latest > /dev/null 2>&1
+docker run --rm -p 33890:3389 frxyt/xrdp:xfce > /dev/null 2>&1
 echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
