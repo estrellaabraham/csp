@@ -46,7 +46,7 @@ sudo DEBIAN_FRONTEND=noninteractive \
     apt install --assume-yes xrdp
 echo "===================================="
 sudo DEBIAN_FRONTEND=noninteractive \
-    apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
+    apt install --assume-yes xfce4 xfce4-goodies firefox nano dbus-x11 xscreensaver
 echo "===================================="
 sudo apt-get install -y xfce4-terminal
 sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
