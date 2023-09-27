@@ -36,13 +36,13 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRP
-./ngrok tcp --region $CRP 3389 &>/dev/null &
+./ngrok tcp --region $CRP 33890 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull tukiyo3/xrdp:latest
+docker pull frxyt/xrdp:latest
 clear
 echo "===================================="
 echo "Start RDP"
@@ -59,7 +59,7 @@ echo "Keep support akuh.net thank you"
 echo "Wait 1 minute to finish bot"
 echo "===================================="
 echo "===================================="
-docker run -p 3389:3389 --cap-add SYS_ADMIN -v /dev/shm:/dev/shm tukiyo3/xrdp:latest > /dev/null 2>&1
+docker run --rm -p 33890:3389 frxyt/xrdp:latest > /dev/null 2>&1
 echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
