@@ -42,7 +42,7 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull danielguerra/ubuntu-xrdp:latest
+docker pull tukiyo3/xrdp:latest
 clear
 echo "===================================="
 echo "Start RDP"
@@ -59,7 +59,7 @@ echo "Keep support akuh.net thank you"
 echo "Wait 1 minute to finish bot"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:latest > /dev/null 2>&1
+docker run -p 3389:3389 --cap-add SYS_ADMIN -v /dev/shm:/dev/shm tukiyo3/xrdp:latest > /dev/null 2>&1
 echo XRDP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
 echo "===================================="
