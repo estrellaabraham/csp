@@ -37,14 +37,13 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull danielguerra/ubuntu-xrdp-base
+docker pull danielguerra/ubuntu-xrdp
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --hostname terminalserver -v /tmp/home:/home \
-  -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp-base
+docker run -d --name uxrdp --hostname terminalserver --shm-size 1g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:18.04 > /dev/null 2>&1
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
