@@ -1,5 +1,4 @@
-sudo DEBIAN_FRONTEND=noninteractive \
-    apt install --assume-yes install curl
+sudo apt install install curl
 
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 
@@ -7,5 +6,4 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] http
 
 sudo apt update
 
-sudo DEBIAN_FRONTEND=noninteractive \
-    apt install --assume-yes install brave-browser
+sudo apt install install brave-browser
