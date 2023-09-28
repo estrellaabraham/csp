@@ -43,7 +43,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run --rm -d --network host --shm-size=1g -p 5900:5900 -p 6080:6080 -e VNC_PASSWD=password dcsunset/ubuntu-vnc:latest
+docker run -d -p 5900:5900 -p 6080:6080 --shm-size=1g -e VNC_PASSWD=password dcsunset/ubuntu-vnc:latest
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
