@@ -37,13 +37,13 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull frxyt/xrdp:mate
+docker pull frxyt/xrdp:lxde
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 33890:3389 --privileged --cap-add=SYS_PTRACE --shm-size=2g frxyt/xrdp:mate
+docker run -d -p 33890:3389 --privileged --cap-add=SYS_PTRACE --shm-size=2g frxyt/xrdp:lxde
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
