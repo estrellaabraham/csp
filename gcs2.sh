@@ -31,7 +31,7 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRM
-./ngrok tcp --region $CRM 5900 &>/dev/null &
+./ngrok tcp --region $CRM 3389 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
 echo "===================================="
@@ -43,7 +43,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run --rm -p 3388:3389 --shm-size=2g danielguerra/ubuntu-xrdp:20.04
+docker run -d --name uxrdp --hostname terminalserver --privileged --cap-add=SYS_PTRACE --shm-size=2g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:20.04
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
