@@ -12,6 +12,7 @@ sudo rm microsoft.gpg
 echo "======================="
 sudo DEBIAN_FRONTEND=noninteractive \ 
     apt update
+sudo apt install firefox
 sudo DEBIAN_FRONTEND=noninteractive \ 
     apt install --assume-yes vivaldi-stable
 echo "======================="
