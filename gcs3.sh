@@ -37,13 +37,13 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull thuonghai2711/ubuntu-vnc
+docker pull thuonghai2711/ubuntu20-vnc-pulseaudio
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name ubuntu18.04 --privileged --cap-add=SYS_PTRACE --shm-size 2g -d -p 5900:5900 -p 6080:6080 thuonghai2711/ubuntu-vnc:latest
+docker run -it --network host --shm-size 2g --privileged --cap-add=NET_ADMIN thuonghai2711/ubuntu20-vnc-pulseaudio:latest
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
