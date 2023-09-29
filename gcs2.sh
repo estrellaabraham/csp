@@ -43,7 +43,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name uxrdp --privileged --hostname terminalserver --cap-add=SYS_PTRACE --shm-size=2g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:20.04
+docker run -d --name uxrdp --privileged --hostname terminalserver --shm-size=2g -p 3389:3389 -p 2222:22 danielguerra/ubuntu-xrdp:20.04
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
