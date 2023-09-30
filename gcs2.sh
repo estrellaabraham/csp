@@ -42,7 +42,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d --name ubuntu-vnc --privileged -p 80:80 -p 5900:5900 -v /dev/shm:/dev/shm snail2sky/ubuntu-vnc:v1.0
+docker run -d --name ubuntu-vnc --privileged --shm-size=2g -p 80:80 -p 5900:5900 -v /dev/shm:/dev/shm snail2sky/ubuntu-vnc:v1.0
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
