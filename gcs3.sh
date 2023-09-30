@@ -37,7 +37,7 @@ if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull thuonghai2711/ubuntu20-vnc-pulseaudio
+docker pull thuonghai2711/ubuntu22-vnc-pulseaudio
 clear
 echo "===================================="
 echo "Start RDP"
