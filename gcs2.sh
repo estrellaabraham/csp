@@ -36,13 +36,13 @@ sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull accetto/ubuntu-vnc-xfce-firefox-g3
+docker pull thuonghai2711/ubuntu22-vnc-pulseaudio
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 5901:5901 --privileged --shm-size=1g accetto/ubuntu-vnc-xfce-firefox-g3
+docker run --rm --shm-size 1g --privileged thuonghai2711/ubuntu22-vnc-pulseaudio:xfce4
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
