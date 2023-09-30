@@ -36,17 +36,17 @@ sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull dcsunset/ubuntu-vnc:18.04
+docker pull dorowu/ubuntu-desktop-lxde-vnc
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 5900:5900 -p 6080:6080 --shm-size 2g --privileged --cap-add=SYS_PTRACE -e VNC_PASSWD=password dcsunset/ubuntu-vnc:18.04
+docker run -p 6080:80 -p 5900:5900 -v /dev/shm:/dev/shm dorowu/ubuntu-desktop-lxde-vnc
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
 echo User: ubuntu
 echo Passwd: ubuntu
 echo "VM can't connect? Restart Cloud Shell then Re-run script."
-sleep 600
+sleep 300
