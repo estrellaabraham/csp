@@ -42,7 +42,7 @@ echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 5901:5901 --privileged --shm-size=2g accetto/ubuntu-vnc-xfce-firefox-g3
+docker run -d -p 5901:5901 --privileged --shm-size=2g -e VNC_PASSWD=password accetto/ubuntu-vnc-xfce-firefox-g3
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
