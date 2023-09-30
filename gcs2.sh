@@ -31,18 +31,18 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRM
-./ngrok tcp --region $CRM 5901 &>/dev/null &
+./ngrok tcp --region $CRM 5900 &>/dev/null &
 sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull consol/rocky-xfce-vnc
+docker pull snail2sky/ubuntu-vnc
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 5901:5901 -p 6901:6901 consol/rocky-xfce-vnc
+docker run -d --name ubuntu-vnc --privileged -p 80:80 -p 5900:5900 -v /dev/shm:/dev/shm snail2sky/ubuntu-vnc:v1.0
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
