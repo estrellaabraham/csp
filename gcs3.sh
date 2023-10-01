@@ -36,13 +36,13 @@ sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull dcsunset/ubuntu-vnc
+docker pull inseefrlab/ubuntu-vnc
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run -d -p 5900:5900 -p 6080:6080 -e VNC_PASSWD=password dcsunset/ubuntu-vnc
+docker run -d -p 5900:5900 -p 6080:6080 --shm-size 1g --privileged inseefrlab/ubuntu-vnc:latest
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
