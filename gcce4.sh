@@ -48,23 +48,13 @@ sub-install-Brave ()
  echo "================================================================="
  echo " Install Brave  "
  echo "-----------------------------------------------------------------"
- read -p "Proceed ? (Y/n)" choice
- if [ "$choice" = "n" ]
-    then 
-        echo "Bypassing...." 
-    elif [ "$choice" = "N" ]
-	then
-       echo "Bypassing...." 
-    else 
-       echo "Running..."
-       sudo apt install curl
-       sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-       echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-       sudo DEBIAN_FRONTEND=noninteractive \ 
-           apt update
-       sudo DEBIAN_FRONTEND=noninteractive \ 
-           apt --fix-broken install --assume-yes brave-browser
-fi
+ sudo apt install curl
+ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+ sudo DEBIAN_FRONTEND=noninteractive \ 
+     apt update
+ sudo DEBIAN_FRONTEND=noninteractive \ 
+     apt --fix-broken install --assume-yes brave-browser
 }
 
 ####################################################
