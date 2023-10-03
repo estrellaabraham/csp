@@ -36,7 +36,7 @@ sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-docker pull thuonghai2711/ubuntu22-vnc-pulseaudio
+docker pull dcsunset/ubuntu-vnc
 clear
 echo "===================================="
 echo "Start RDP"
