@@ -31,17 +31,18 @@ echo "sa - South America (Sao Paulo)"
 echo "jp - Japan (Tokyo)"
 echo "in - India (Mumbai)"
 read -p "choose ngrok region: " CRM
-./ngrok tcp --region $CRM 5900 &>/dev/null &
+./ngrok tcp --region $CRM 5901 &>/dev/null &
 sleep 1
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
+docker pull consol/rocky-xfce-vnc
 clear
 echo "===================================="
 echo "Start RDP"
 echo "===================================="
 echo "===================================="
-docker run --privileged --shm-size 1g -d -p 8080:10000 -e VNC_PASSWD=password -e PORT=10000 -e AUDIO_PORT=1699 -e WEBSOCKIFY_PORT=6900 -e VNC_PORT=5900 -e SCREEN_WIDTH=1024 -e SCREEN_HEIGHT=768 -e SCREEN_DEPTH=24 thuonghai2711/ubuntu-novnc-pulseaudio:20.04
+docker run -d -p 5901:5901 -p 6901:6901 --privileged --shm-size 1g consol/rocky-xfce-vnc
 clear
 echo IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p' 
