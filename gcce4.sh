@@ -38,6 +38,37 @@ read -p "choose ngrok region: " CRM
 ./ngrok tcp --region $CRM 3389 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
+
+####################################################
+
+sub-install-Brave ()
+{
+ echo ""
+ echo ""
+ echo "================================================================="
+ echo " Install Brave  "
+ echo "-----------------------------------------------------------------"
+ read -p "Proceed ? (Y/n)" choice
+ if [ "$choice" = "n" ]
+    then 
+        echo "Bypassing...." 
+    elif [ "$choice" = "N" ]
+	then
+       echo "Bypassing...." 
+    else 
+       echo "Running..."
+       sudo apt install curl
+       sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+       echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+       sudo DEBIAN_FRONTEND=noninteractive \ 
+           apt update
+       sudo DEBIAN_FRONTEND=noninteractive \ 
+           apt --fix-broken install --assume-yes brave-browser
+fi
+}
+
+####################################################
+
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
@@ -49,6 +80,7 @@ sudo DEBIAN_FRONTEND=noninteractive \
     apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
 echo "===================================="
 sudo apt-get install -y xfce4-terminal
+sub-install-Brave
 sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
 sudo service xrdp start
 clear
