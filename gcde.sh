@@ -1,6 +1,6 @@
-sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/newuser --gecos "User" user
-sudo usermod -aG sudo user
-echo "user:root" | sudo chpasswd
+sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/toikik1995 --gecos "User" toikik1995
+sudo usermod -aG sudo toikik1995
+echo "toikik1995:toikik1995" | sudo chpasswd
 
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
 chmod +x ng.sh
@@ -38,17 +38,41 @@ read -p "choose ngrok region: " CRM
 ./ngrok tcp --region $CRM 3389 &>/dev/null &
 sleep 1
 if curl --silent --show-error http://127.0.0.1:4040/api/tunnels  > /dev/null 2>&1; then echo OK; else echo "Ngrok Error! Please try again!" && sleep 1 && goto ngrok; fi
+
+####################################################
+
+sub-install-Brave ()
+{
+ echo ""
+ echo ""
+ echo "================================================================="
+ echo " Install Brave  "
+ echo "-----------------------------------------------------------------"
+ sudo apt install curl
+ sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+ sudo DEBIAN_FRONTEND=noninteractive \ 
+     apt update
+ sudo DEBIAN_FRONTEND=noninteractive \ 
+     apt --fix-broken install --assume-yes brave-browser
+}
+
+####################################################
+
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
+sudo apt update && apt upgrade -y
+echo "===================================="
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt install --assume-yes xrdp
 echo "===================================="
 sudo DEBIAN_FRONTEND=noninteractive \
     apt install --assume-yes lxde dbus-x11 xscreensaver
 echo "===================================="
-sudo apt-get update > /dev/null 2>&1
-sudo apt install -y xrdp > /dev/null 2>&1
-sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh > /dev/null 2>&1
-sudo service xrdp start > /dev/null 2>&1
+sub-install-Brave
+sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh 
+sudo service xrdp start
 clear
 echo "===================================="
 echo "Start RDP"
@@ -60,4 +84,4 @@ curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*publ
 echo "Don't close this tab to keep RDP running"
 echo "Wait 1 minute to finish bot"
 echo "VM can't connect? Restart Cloud Shell then Re-run script."
-seq 1 43200 | while read i; do echo -en "\r Running .     $i s /43200 s";sleep 0.1;echo -en "\r Running ..    $i s /43200 s";sleep 0.1;echo -en "\r Running ...   $i s /43200 s";sleep 0.1;echo -en "\r Running ....  $i s /43200 s";sleep 0.1;echo -en "\r Running ..... $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1;echo -en "\r Running  .... $i s /43200 s";sleep 0.1;echo -en "\r Running   ... $i s /43200 s";sleep 0.1;echo -en "\r Running    .. $i s /43200 s";sleep 0.1;echo -en "\r Running     . $i s /43200 s";sleep 0.1; done
+sleep 43200
