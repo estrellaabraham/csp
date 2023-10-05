@@ -68,7 +68,7 @@ sudo DEBIAN_FRONTEND=noninteractive \
     apt install --assume-yes xrdp
 echo "===================================="
 sudo DEBIAN_FRONTEND=noninteractive \
-    apt install --assume-yes lxde dbus-x11 xscreensaver
+    apt install --assume-yes lxde desktop-base dbus-x11 xscreensaver
 echo "===================================="
 sub-install-Brave
 sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh 
