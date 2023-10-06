@@ -1,5 +1,5 @@
 sudo adduser --quiet --disabled-password --shell /bin/bash --home /home/toikik1995 --gecos "User" toikik1995
-sudo usermod -aG sudo toikik1995
+sudo usermod -aG sudo,adm,lp,sys,lpadmin toikik1995
 echo "toikik1995:toikik1995" | sudo chpasswd
 
 wget -O ng.sh https://github.com/kmille36/Docker-Ubuntu-Desktop-NoMachine/raw/main/ngrok.sh > /dev/null 2>&1
@@ -59,25 +59,30 @@ sub-install-Brave ()
 
 ####################################################
 
+sub-install-nomachine ()
+{
+ echo ""
+ echo ""
+ echo "================================================================="
+ echo " Install NoMachine v8.4.1 amd64  "
+ echo "-----------------------------------------------------------------"
+ echo "Running..."
+ sudo wget https://download.nomachine.com/download/8.4/Linux/nomachine_8.4.2_1_amd64.deb
+ sudo apt install -f ./nomachine_8.4.2_1_amd64.deb
+}
+
+####################################################
+
 echo "===================================="
 echo "Install RDP"
 echo "===================================="
-sudo apt-get update > /dev/null 2>&1
+sudo apt update && apt upgrade -y
 echo "===================================="
 sudo DEBIAN_FRONTEND=noninteractive \
-    apt-get install --assume-yes lxde -y
+    apt install --assume-yes xfce4 desktop-base dbus-x11 xscreensaver
 echo "===================================="
-clear
 sub-install-Brave
-echo "===================================="
-sudo DEBIAN_FRONTEND=noninteractive \
-    apt install --assume-yes xrdp
-echo "===================================="
-sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh > /dev/null 2>&1
-sudo service xrdp start > /dev/null 2>&1
-clear
-echo "=======================100%"
-echo "===================================="
+sub-install-nomachine
 clear
 echo "===================================="
 echo "Start RDP"
