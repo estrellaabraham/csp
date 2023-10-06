@@ -63,7 +63,10 @@ echo "===================================="
 echo "Install RDP"
 echo "===================================="
 sudo apt-get update > /dev/null 2>&1
-sudo apt-get install lxde -y
+echo "===================================="
+sudo DEBIAN_FRONTEND=noninteractive \
+    apt-get install --assume-yes lxde -y
+echo "===================================="
 clear
 sub-install-Brave
 echo "===================================="
