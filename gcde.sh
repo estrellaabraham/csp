@@ -63,14 +63,18 @@ echo "===================================="
 echo "Install RDP"
 echo "===================================="
 sudo apt-get update > /dev/null 2>&1
+sudo apt-get install lxde -y
+clear
+sub-install-Brave
 echo "===================================="
 sudo DEBIAN_FRONTEND=noninteractive \
     apt install --assume-yes xrdp
 echo "===================================="
-sudo apt-get install lxde -y
-sub-install-Brave
 sudo sed -i.bak '/fi/a lxde-session \n' /etc/xrdp/startwm.sh > /dev/null 2>&1
 sudo service xrdp start > /dev/null 2>&1
+clear
+echo "=======================100%"
+echo "===================================="
 clear
 echo "===================================="
 echo "Start RDP"
